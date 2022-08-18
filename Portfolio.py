@@ -31,15 +31,13 @@ st.markdown("* 표기된 기대수익률은 연간 기대수익률 기준입니�
 st.markdown("* 별표로 표시된 부분이 MVP, 최소분산포트폴리오지점입니다.")
 st.markdown("* x표시가 된 부분이 모든 금액을 입력하신 종목에 투자했을 경우의 기대수익률입니다.")
 st.markdown("* x표시를 기준으로 투자자의 성향에 따라 가중치를 조정해서 확인하시면 됩니다.")
-st.markdown("** x표시가 우상단에 위치해있는 구조라면 입력하신 종목 비중을 늘리면 기대수익률과 위험이 증가합니다.")
-st.markdown("** x표시가 우하단에 위치해있는 구조라면 입력하신 종목 비중을 줄이면 기대수익률과 위험이 증가합니다.")
 st.markdown("* 해당 지표는 세금, 거래 수수료 등이 반영되지 않은 수치이므로 참고용으로 사용하시길 바랍니다.")
 
 df_krx = fdr.StockListing("KRX")
 df_krx = df_krx.dropna(axis=0).reset_index(drop=True)
 
-tmp_item_info = st.text_input("종목명 입력", "종목명을 정확하게 입력해 주세요")
-st.markdown
+tmp_item_info = st.text_input("Code Name", placeholder="종목명을 정확하게 입력해 주세요")
+
 # 종목명입력하면 종목 코드와 시장 반환해 주는 함수
 def find_history_krx(name):
     info_list = []
@@ -108,7 +106,6 @@ def get_corr(code1, code2):
 input_item = []
 input_item.append(expected_return(rm_kospi, rf, get_beta(item_info[1])))
 input_item.append(get_std(item_info[1]))
-input_item
 
 # fundamental 지표로 종목 정하기
 # PER, PBR, EPS, DIV, DPS, BPS
@@ -244,7 +241,7 @@ for i in range(len(df_top3)):
     top3_corr = df_top3.iloc[i]["corr"]
     tmp_return_2 = []
     tmp_std_2 = []
-    for x in range(2500):
+    for x in range(10000):
         weights_2 = np.random.random(2)
         weights_2 /= np.sum(weights_2)  # 가중치 합 1
         mvp_weight = get_mvp_weight(input_item[1], top3_std, top3_corr)
@@ -268,6 +265,7 @@ for i in range(len(df_top3)):
     plt.xlabel("std(σ)")
     plt.ylabel("Expected rate of return(E[r])")
     st.pyplot(fig) 
+    
     st.write(f"{item_info[0]} & {top3_name}로 구성된 MVP 연간 기대수익률: {np.round(mvp_return, 2)}%")
     st.write(f"{item_info[0]}의 연간 기대수익률: {input_item[0]}%")
     st.write(f"{item_info[0]}의 보유 비중: {np.round(mvp_weight, 2)}")
