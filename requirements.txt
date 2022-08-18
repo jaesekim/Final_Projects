@@ -1,0 +1,12 @@
+pandas
+numpy
+streamlit
+finance-dataReader
+matplotlib
+plotly
+datetime
+timedelta
+requests
+beautifulsoup4
+koreanize_matplotlib
+pykrx
