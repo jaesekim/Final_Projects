@@ -161,7 +161,7 @@ else:
     # 합산 점수가 가장 낮을 수록 높은 순위
     # 상위 50 종목
     df_per["total_rank"] = df_per["bps_rank"] + df_per["per_rank"] + df_per["pbr_rank"] + df_per["eps_rank"] + df_per["div_rank"] + df_per["dps_rank"]
-    df_sorted = df_per.sort_values(by="total_rank", ascending=True).reset_index(drop=True).head(50)
+    df_sorted = df_per.sort_values(by="total_rank", ascending=True).reset_index(drop=True).head(20)
 
 
     # 고른 종목과 상관계수 구하기
@@ -175,7 +175,7 @@ else:
     # 상위 30개 종목 추리기
 
     df_sorted["total_rank"] = df_sorted["total_rank"] + df_sorted["corr_rank"]
-    df_sorted = df_sorted.sort_values(by="total_rank", ascending=True).reset_index(drop=True).head(30)
+    df_sorted = df_sorted.sort_values(by="total_rank", ascending=True).reset_index(drop=True).head(20)
 
 
     # 종목코드에 종목명 컬럼 매치
