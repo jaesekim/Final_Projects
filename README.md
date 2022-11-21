@@ -2,6 +2,10 @@
 ## Value Prediction & Portfolio
 ## 시계열 분석을 통한 주가 예측 및 포트폴리오
 
-* Minimum Variance Portfolio
+* ipynb
+** Minimum Variance Portfolio
+
+* py
+** streamlit deploy
 
 https://jaesekim-final-projects-portfolio-ok1s6l.streamlitapp.com/
